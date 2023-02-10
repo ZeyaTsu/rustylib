@@ -4,15 +4,17 @@ import time
 """
 initialize some basics
 """
-def Rinit():
-    rand = Random()
-    rand.seed()
-    return rand
+
 
 """
 Random Module
 """
 class Random:
+    def Rinit():
+        rand = Random()
+        rand.seed()
+        return rand
+
     def seed(self, seed=None):
         if seed is None:
             seed = int(time.time() * 1000)
