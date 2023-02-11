@@ -16,9 +16,23 @@ class Rusty:
         for i in range(var):
             function()
 
+    def mkStrJoin(LIST_NAME, splitCaracter=''):
+        FINAL_STR_JOIN_RETURN = ""
+        for i, string, in enumerate(LIST_NAME):
+            if i == 0:
+                FINAL_STR_JOIN_RETURN += string
+            else:
+                FINAL_STR_JOIN_RETURN += splitCaracter + string
+        return FINAL_STR_JOIN_RETURN
+
+    def mkStr(LIST_NAME, splitCaracter='') -> str:
+        LIST_NAME = str(LIST_NAME)
+        LIST_NAME = LIST_NAME.replace("[","").replace("]","").replace(",",splitCaracter).replace("'","")
+        return LIST_NAME
+
     def pkginfo():
         NAME = 'rustylib'
-        VERSION = '1.6.2'
+        VERSION = '1.7.0'
         cache = []
         web = Request("https://raw.githubusercontent.com/ZeyaTsu/rustylib/main/Rpkg_info.json")
         res = web.send()
@@ -206,3 +220,64 @@ class Rplus:
 
     def getThis(self, name):
         return self.data.get(name)
+
+import re
+
+class console:
+    """
+    pattern for variables : 
+        name:type = value
+    """
+    def __init__(self):
+        start_str = "RUSTY - CONSOLE v:beta"
+        print(start_str)
+        self.variables = {}
+        while True:
+            prompt = str(input("rusty-cmd >>> "))
+            
+            passing = self.check(prompt)
+            if passing != True:
+                pass
+
+            pattern = re.compile(r"^(\w+):(\w+)\s*=\s*(\w+)$")
+            match = pattern.search(prompt)
+
+            if match:
+                var_name = match.group(1)
+                var_type = match.group(2)
+                var_value = match.group(3)
+                self.variables[var_name] = (var_type, var_value)
+                print(f"{var_name} ({var_type}) = {var_value}")
+            else:
+                try:
+                    wait = eval(prompt)
+                    if wait is None:
+                        pass
+                    else:
+                        print(wait)
+                except:
+                    try:
+                        local_namespace = {}
+                        for var_name, (var_type, var_value) in self.variables.items():
+                            local_namespace[var_name] = eval(f"{var_type}({var_value})")
+                        print(eval(prompt, {}, local_namespace))
+                    except Exception as e:
+                        print(prompt)
+
+    def check(self, prompt):
+        if prompt == "webhook":
+            url = str(input("URL>>> "))
+            web = Webhook(url)
+            print("'help' to get help.")
+            prompt = str(input("webhook>>> "))
+            if prompt == "connect":
+                try:
+                    web.connectToAgent()
+                except Exception as e:
+                    print(e)
+                    x = str(input(""))
+            elif prompt == "help":
+                print(f"connect - connect to the webhook ({url})")
+            else:
+                return False
+            
