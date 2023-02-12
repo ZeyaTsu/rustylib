@@ -51,7 +51,15 @@ class Rusty:
             print(f"{NAME} | {cache[1]}")
             print(f"{VERSION}    | {cache[3]}")
         cache.clear()
-              
+    
+    def clear(LIST_NAME, exception=None):
+        if exception is not None:
+            STORE = exception
+        for i in range(len(LIST_NAME) - 1, -1, -1):
+            LIST_NAME.pop(i)
+        if exception is not None:
+            LIST_NAME.insert(0, STORE)
+        return LIST_NAME              
 """
 Webhook
 """

@@ -1,8 +1,7 @@
 import time
 
-
 """
-initialize some basics
+initialize some basics 
 """
 """
 Random Module
