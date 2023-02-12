@@ -6,3 +6,5 @@
 * Rrequests
 * Rsugaku
 * Rusty
+
+https://pypi.org/project/rustylib/
