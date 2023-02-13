@@ -32,7 +32,7 @@ class Rusty:
 
     def pkginfo():
         NAME = 'rustylib'
-        VERSION = '1.7.0'
+        VERSION = '1.7.4'
         cache = []
         web = Request("https://raw.githubusercontent.com/ZeyaTsu/rustylib/main/Rpkg_info.json")
         res = web.send()
@@ -231,7 +231,7 @@ class Rplus:
 
 import re
 
-class console:
+class Rconsole:
     """
     pattern for variables : 
         name:type = value
