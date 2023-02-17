@@ -29,10 +29,32 @@ class Rusty:
         LIST_NAME = str(LIST_NAME)
         LIST_NAME = LIST_NAME.replace("[","").replace("]","").replace(",",splitCaracter).replace("'","")
         return LIST_NAME
+    
+    def ord(c):
+        if len(c) !=1:
+            raise TypeError('Rusty Error - 1 Character is expected.')
+        return ord(c.encode('utf-8')[0])
+    
+    def hashCode(string:str):
+        hash = 0
+        for c in string:
+            hash = (31 * hash + ord(c)) & 0xFFFFFFFF
+        return ((hash + 0x80000000) & 0xFFFFFFFF) - 0x80000000
+
+    def strioReverse(string:str) -> str:
+        cache = []
+        reversed_str = []
+        for letters in string:
+            cache.append(letters)
+        valueLEN = len(string)
+        for i in range(len(string)):
+            reversed_str.append(cache[valueLEN-1])
+            valueLEN -= 1 
+        return Rusty.mkStrJoin(reversed_str)
 
     def pkginfo():
         NAME = 'rustylib'
-        VERSION = '1.7.4'
+        VERSION = '1.8.1'
         cache = []
         web = Request("https://raw.githubusercontent.com/ZeyaTsu/rustylib/main/Rpkg_info.json")
         res = web.send()
