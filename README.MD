@@ -6,15 +6,14 @@
 * Rrequests
 * Rsugaku
 * Rusty
+* Rkon
 
 # Changelog
-* Math now has the function round(number, decimalsAllowed), by default set to 0 (See documentation).
-* Random can now put uppercases letters among the random-generated-string with a probability of chance to appear (See documentation).
-* Random has now the function rfloat(FloatA, FloatB), generating a random float number from a given number A to another one B.
-* Random has now the function probability(max), max is set to 100 by default and generate a random % from 0 to the 'max' value. 
-* New features to Random will now have the suffix 'io' (depending on their utility)
+* Math has now the classes Point with a function render in order to render points in a terminal. 
+* New module available: Rkon - A parser for a custom file extension (.k-on), see documentation for more.
 
 ##### Full Documentation here : https://github.com/ZeyaTsu/rustylib/wiki/Welcome-to-rustylib
+##### Rkon Parser documentation here : https://github.com/ZeyaTsu/rustylib/wiki/Using:-Kon-(Parser)
  
 
 # About rustylib's history and motivation
