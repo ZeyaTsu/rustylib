@@ -24,6 +24,7 @@ class Rusty:
             else:
                 FINAL_STR_JOIN_RETURN += splitCaracter + string
         return FINAL_STR_JOIN_RETURN
+        
 
     def mkStr(LIST_NAME, splitCaracter='') -> str:
         LIST_NAME = str(LIST_NAME)
@@ -51,10 +52,21 @@ class Rusty:
             reversed_str.append(cache[valueLEN-1])
             valueLEN -= 1 
         return Rusty.mkStrJoin(reversed_str)
+    
+    def find(prompt, wanted):
+        analysis = []
+        found = []
+        for let in str(prompt):
+            analysis.append(let)
+        for indx in range(len(analysis)):
+            if analysis[indx] == wanted:
+                valueRETURN = analysis[indx]
+                found.append(valueRETURN)
+        return len(found)
 
     def pkginfo():
         NAME = 'rustylib'
-        VERSION = '1.8.1'
+        VERSION = '1.8.4'
         cache = []
         web = Request("https://raw.githubusercontent.com/ZeyaTsu/rustylib/main/Rpkg_info.json")
         res = web.send()

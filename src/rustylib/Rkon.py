@@ -1,16 +1,17 @@
 import sys, os
 from .Rusty import Rusty
+from .Rrandom import Random
 
 class Kon:
     def __init__(self, filename):
-        if filename.endswith('.k-on'):
+        if filename.endswith('.k-on') or filename.endswith('.lyco'):
             if not os.path.isfile(filename):
                 print(f"Rusty Help - {filename} doesn't exist, making one...")
                 self.fileS = filename
                 self.mkKonDefault(self.fileS)
             self.fileS = filename
         else:
-            print("Rusty Error - Rkon only accepts .k-on extension.")
+            print("Rusty Error - Rkon only accepts .k-on or .lyco extension. (You may want to change .ini to .k-on ?)")
             sys.exit()
 
     def mkKon(self, name):
@@ -22,21 +23,21 @@ class Kon:
             pass
     
     def mkKonDefault(self, name):
-        if name.endswith('.k-on'):
+        if name.endswith('.k-on') or name.endswith('.lyco'):
             pass
         else:
             name = f"{name}.k-on"
+        rand = Random.init()
         with open(name, 'w') as f:
             df = [
                     "[DEFAULT]",
                     "isExample = True",
-                    "Number = 1",
+                    f"Number = {rand.rint(0, 100)}",
                     "string = Hello world!"
                 ]
             for items in df:
                 f.write(f"{items}\n")
-            
-
+        
     def read(self):
         data = {}
         current_section = None
@@ -63,6 +64,18 @@ class Kon:
                     data[current_section][key.strip()] = value.strip()
 
         return data
+
+    def isExisting(self, keywordItem, getLine=False):
+        with open(self.fileS, "r") as f:
+            i = 0
+            for line in f:
+                i+=1
+                if keywordItem == line.strip():
+                    if getLine == True:
+                        return i
+                    return True
+
+            return False
 
     def insert(self, keywordsItem:list):
         for items in keywordsItem:

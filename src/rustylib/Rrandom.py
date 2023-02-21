@@ -1,5 +1,6 @@
 import time
 from .Rmath import Math
+from .Rusty import Rusty
 """
 initialize some basics 
 """
@@ -61,3 +62,19 @@ class Random:
     
     def probability(self, max:float=100.0):
         return Math.round(self.rfloat(0, 1) * 100, 2)
+    
+
+    def getrandbits(self, intN: int) -> int:
+        """
+        Returns a non-negative integer with k random bits.
+        """
+        rand = Random()
+        rand.seed()
+        if intN <= 0:
+            raise ValueError("number of bits must be positive")    
+        num_ints = (intN + 31) // 32   
+        result = 0
+        for i in range(num_ints):
+            result = (result << 32) + rand.rint(0, (1 << 32) - 1)
+        
+        return result >> (num_ints * 32 - intN )
