@@ -39,7 +39,7 @@ class Math:
     def sqrt(num) -> float:
         root = num**(1/2)
         return root
-    
+
     def cubeRoot(num) -> float:
         root = num**(1/3)
         return root

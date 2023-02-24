@@ -91,3 +91,33 @@ class Kon:
             for line in lines:
                 if keywordsItem not in line:
                     f.write(line)
+
+class Secret:
+    def secret_song():
+        import os
+        import random
+        import pygame
+
+        songs_with_names = {
+            "kon.wav" : "Playing: Tenshi ni Fureta yo!",
+        }
+
+        # Choose a random song from the dictionary
+        song_file = random.choice(list(songs_with_names.keys()))
+
+        # Get the path to the song file in the same directory as this script
+        file_path = os.path.join(os.path.dirname(__file__), song_file)
+
+        # Initialize Pygame mixer
+        pygame.mixer.init()
+
+        # Load the sound file
+        sound = pygame.mixer.Sound(file_path)
+
+        # Play the sound file
+        print(f"Now playing {songs_with_names[song_file]}...")
+        sound.play()
+
+        # Wait for the sound to finish playing
+        while pygame.mixer.get_busy():
+            continue

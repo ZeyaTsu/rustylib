@@ -66,7 +66,7 @@ class Rusty:
 
     def pkginfo():
         NAME = 'rustylib'
-        VERSION = '1.8.4'
+        VERSION = '1.8.6'
         cache = []
         web = Request("https://raw.githubusercontent.com/ZeyaTsu/rustylib/main/Rpkg_info.json")
         res = web.send()
@@ -323,3 +323,15 @@ class Rconsole:
             else:
                 return False
             
+class Audio:
+    def play(filename):
+        import os
+        import pygame
+
+        file_path = os.path.join(os.path.dirname(__file__), filename)
+        pygame.mixer.init()
+
+        sound = pygame.mixer.Sound(file_path)
+        sound.play()
+        while pygame.mixer.get_busy():
+            continue

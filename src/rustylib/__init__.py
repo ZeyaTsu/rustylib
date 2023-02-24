@@ -9,5 +9,6 @@ from .Rusty import Rconsole
 from .Rusty import Rplus
 from .Rcolor import Back
 from .Rkon import Kon
+from .Rkon import Secret
 
-__all__ = ['Kon','Object','Point','Random', 'init', 'Math', 'Request', 'Sugaku', 'Rusty', 'Webhook', 'Rplus', 'Back', 'Rconsole']
+__all__ = ['Secret','Kon','Object','Point','Random', 'init', 'Math', 'Request', 'Sugaku', 'Rusty', 'Webhook', 'Rplus', 'Back', 'Rconsole']
