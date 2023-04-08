@@ -65,7 +65,7 @@ class Rusty:
 
     def pkginfo():
         NAME = 'rustylib'
-        VERSION = '1.8.8'
+        VERSION = '1.8.9'
         cache = []
         web = Request("https://raw.githubusercontent.com/ZeyaTsu/rustylib/main/Rpkg_info.json")
         res = web.send()
