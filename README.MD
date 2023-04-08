@@ -9,8 +9,8 @@
 * Rkon
 
 # Changelog
-* Rkon has now the function isExisting (see documentation)
-* Rusty has now the function find() to find a wanted character in a string, int or float number.
+* Rusty has now the swap(list, item, item2) function, read documentation.
+* Rusty has now the enum function, works as same as the enumerate function.
 
 ##### Full Documentation here : https://github.com/ZeyaTsu/rustylib/wiki/Welcome-to-rustylib
 ##### Rkon Parser documentation here : https://github.com/ZeyaTsu/rustylib/wiki/Using:-Kon-(Parser)
