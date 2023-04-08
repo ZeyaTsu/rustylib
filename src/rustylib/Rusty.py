@@ -3,7 +3,6 @@ import json
 import time
 from .Rrequests import Request
 
-
 class Rusty:
     def wait():
         while True:
@@ -66,7 +65,7 @@ class Rusty:
 
     def pkginfo():
         NAME = 'rustylib'
-        VERSION = '1.8.6'
+        VERSION = '1.8.8'
         cache = []
         web = Request("https://raw.githubusercontent.com/ZeyaTsu/rustylib/main/Rpkg_info.json")
         res = web.send()
@@ -93,7 +92,28 @@ class Rusty:
             LIST_NAME.pop(i)
         if exception is not None:
             LIST_NAME.insert(0, STORE)
-        return LIST_NAME              
+        return LIST_NAME    
+
+    def enum(iterable, i=0):
+        for index in range(i, len(iterable)):
+            yield index, iterable[index]
+    
+    def swap(LIST:list, item, item2):
+        try:
+            swapped_item_pos = LIST.index(item)
+            LIST.pop(swapped_item_pos)
+
+            new_item_place = LIST.index(item2)
+            LIST.pop(new_item_place)
+
+            LIST.insert(new_item_place, item)
+            LIST.insert(swapped_item_pos, item2)
+
+            return LIST
+        
+        except Exception as e:
+            print(f"Rusty Error - {e}")
+         
 """
 Webhook
 """
@@ -322,16 +342,3 @@ class Rconsole:
                 print(f"connect - connect to the webhook ({url})")
             else:
                 return False
-            
-class Audio:
-    def play(filename):
-        import os
-        import pygame
-
-        file_path = os.path.join(os.path.dirname(__file__), filename)
-        pygame.mixer.init()
-
-        sound = pygame.mixer.Sound(file_path)
-        sound.play()
-        while pygame.mixer.get_busy():
-            continue
