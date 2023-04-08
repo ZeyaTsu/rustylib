@@ -13,6 +13,7 @@ class Kon:
         else:
             print("Rusty Error - Rkon only accepts .k-on or .lyco extension. (You may want to change .ini to .k-on ?)")
             sys.exit()
+    
 
     def mkKon(self, name):
         if name.endswith('.k-on'):
@@ -92,32 +93,49 @@ class Kon:
                 if keywordsItem not in line:
                     f.write(line)
 
-class Secret:
-    def secret_song():
-        import os
-        import random
-        import pygame
+    def edit(self, section_name, keyword, new_value):
+        data = self.read()
 
-        songs_with_names = {
-            "kon.wav" : "Playing: Tenshi ni Fureta yo!",
-        }
+        if section_name not in data:
+            raise ValueError(f"Section '{section_name}' not found in file '{self.fileS}'")
 
-        # Choose a random song from the dictionary
-        song_file = random.choice(list(songs_with_names.keys()))
+        data[section_name][keyword] = new_value
 
-        # Get the path to the song file in the same directory as this script
-        file_path = os.path.join(os.path.dirname(__file__), song_file)
+        with open(self.fileS, "w") as f:
+            for section_name, section_data in data.items():
+                f.write(f"[{section_name}]\n")
+                for key, value in section_data.items():
+                    f.write(f"{key} = {value}\n")
+                f.write("\n")
 
-        # Initialize Pygame mixer
-        pygame.mixer.init()
 
-        # Load the sound file
-        sound = pygame.mixer.Sound(file_path)
-
-        # Play the sound file
-        print(f"Now playing {songs_with_names[song_file]}...")
-        sound.play()
-
-        # Wait for the sound to finish playing
-        while pygame.mixer.get_busy():
-            continue
+#class Secret:
+#    def secret_song():
+#        import os
+#        import random
+#        import pygame
+#
+#        songs_with_names = {
+#            "kon.wav" : "Playing: Tenshi ni Fureta yo!",
+#        }
+#
+#        # Choose a random song from the dictionary
+#        song_file = random.choice(list(songs_with_names.keys()))
+#
+#        # Get the path to the song file in the same directory as this script
+#        file_path = os.path.join(os.path.dirname(__file__), song_file)
+#
+#        # Initialize Pygame mixer
+#        pygame.mixer.init()
+#
+#        # Load the sound file
+#        sound = pygame.mixer.Sound(file_path)
+#
+#        # Play the sound file
+#        print(f"{songs_with_names[song_file]}...")
+#        sound.play()
+#
+#        # Wait for the sound to finish playing
+#        while pygame.mixer.get_busy():
+#            continue
+#
